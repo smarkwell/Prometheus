@@ -6,11 +6,10 @@ var needRedraw = false;
 function resize_canvas()
 {
             canvas = document.getElementById("canvas");
+            download = document.getElementById("download");
             
                 canvas.width  = window.innerWidth;
-            
-
-                canvas.height = window.innerHeight;
+                canvas.height = window.innerHeight - download.offsetHeight;
             
             
             text.x = canvas.width/2 - text.getMeasuredWidth()/2;
@@ -35,6 +34,7 @@ function redraw()
 {
 	resize_canvas();
 	stage.update();
+  updateDownloadLink();
 	needRedraw = false;
 }
 
