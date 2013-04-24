@@ -1,6 +1,7 @@
 
 var stage;
 var text;
+var needRedraw = false;
 
 function resize_canvas()
 {
@@ -17,11 +18,39 @@ function resize_canvas()
 
 }
 
+function handleTick(event)
+{
+  if(!event.paused)
+  {
+    if(needRedraw)
+    {
+      redraw();
+    }
+      
+  }
+  
+}
+
 function redraw()
 {
 	resize_canvas();
 	stage.update();
-	
+	needRedraw = false;
+}
+
+function screenAreaChange()
+{
+  needRedraw = true;
+}
+
+function updateDownloadLink()
+{
+  downloadarea = document.getElementById("download");
+  canvas = document.getElementById("canvas");
+  
+  downloadarea.innerHTML = '<a href="' + canvas.toDataURL("image/png") + '" download="YourDownloadSir.png">Download</a>';
+  
+  
 }
 
 function init()
@@ -35,5 +64,7 @@ function init()
 	 
 	 stage.addChild(text);
 	 
-	 redraw();
+	 createjs.Ticker.addEventListener("tick", handleTick);
+  
+   needRedraw = true;
 }
