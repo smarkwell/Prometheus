@@ -1,7 +1,10 @@
-
 var stage;
 var text;
 var needRedraw = false;
+
+// TODO
+// Add backbone.js
+// Start refactoring into logical elements
 
 function resize_canvas()
 {
@@ -34,6 +37,7 @@ function redraw()
 {
 	resize_canvas();
 	stage.update();
+	//FIXME the download data should be done when the button is clicked.
   updateDownloadLink();
 	needRedraw = false;
 }
