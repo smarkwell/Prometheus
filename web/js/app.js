@@ -67,7 +67,7 @@ function init()
 	 text = new createjs.Text("Drag and drop the shapes", "30px Arial", "#000000");
 	 
 	 stage.addChild(text);
-	 
+	 createjs.Ticker.setFPS(60);
 	 createjs.Ticker.addEventListener("tick", handleTick);
   
    needRedraw = true;
