@@ -13,3 +13,15 @@ html,body {
   overflow: hidden;
   text-align: center;
 }
+
+#radial
+{
+    position: absolute;
+    top: 25%; left: 50%;
+}
+
+#circle
+{
+    position: absolute;
+    top: 25%; left: 75%;
+}
