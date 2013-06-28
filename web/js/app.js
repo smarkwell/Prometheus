@@ -42,7 +42,7 @@ function handleTick(event)
 
 }
 
-function launchFullScreen() {
+function startFullScreen() {
 
   element = document.documentElement;
   if(element.requestFullScreen) {
@@ -52,6 +52,38 @@ function launchFullScreen() {
   } else if(element.webkitRequestFullScreen) {
     element.webkitRequestFullScreen();
   }
+}
+
+function stopFullScreen()
+{
+
+    if(document.cancelFullScreen)
+    {
+      document.cancelFullScreen();
+    }
+    else if(document.mozCancelFullScreen)
+    {
+      document.mozCancelFullScreen();
+    }
+    else if(document.webkitCancelFullScreen)
+    {
+      document.webkitCancelFullScreen();
+    }
+}
+
+function toggleFullScreen()
+{
+  fullscreenElement = document.fullscreenElement || document.mozFullScreenElement || document.webkitFullscreenElement;
+
+  if(fullscreenElement)
+  {
+    stopFullScreen();
+  }
+  else
+  {
+    startFullScreen();
+  }
+
 }
 
 function redraw()
@@ -70,6 +102,22 @@ function screenAreaChange()
   resize_canvas();
   needRedraw = true;
   redraw();
+}
+
+function fullscreenModeChange()
+{
+
+  fullscreenElement = document.fullscreenElement || document.mozFullScreenElement || document.webkitFullscreenElement;
+
+  if(fullscreenElement)
+  {
+      $("#fullscreenbtn").addClass("active");
+  }
+  else
+  {
+      $("#fullscreenbtn").removeClass("active");
+
+  }
 }
 
 function updateDownloadLink()
@@ -104,6 +152,10 @@ function init()
 
   window.addEventListener('resize', screenAreaChange, false);
   window.addEventListener('orientationchange', screenAreaChange, false);
+
+  $(document).on('webkitfullscreenchange mozfullscreenchange fullscreenchange',fullscreenModeChange);
+
+
 
 	// new stage
 	stage = new createjs.Stage(document.getElementById("canvas"));
