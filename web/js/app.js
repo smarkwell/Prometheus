@@ -6,9 +6,40 @@ var stage_view_x = 0;
 var stage_view_y = 0;
 var stage_drag = false;
 
+var grid_spacing = 40;
+var grid_spacingdiv2 = grid_spacing / 2;
+
 // TODO
 // Add backbone.js
 // Start refactoring into logical elements
+
+
+function drawGrid(canvas)
+{
+
+  bw = canvas.width;
+  bh = canvas.height;
+
+  context = canvas.getContext('2d');
+
+  p = 0; //Padding
+
+
+  //Horizontal
+  for (var x = stage_view_x + grid_spacingdiv2; x <= bw; x += grid_spacing) {
+        context.moveTo(0.5 + x + p, p);
+        context.lineTo(0.5 + x + p, bh + p);
+    }
+
+//Vertical
+    for (var y = stage_view_y + grid_spacingdiv2; y <= bh; y += grid_spacing) {
+        context.moveTo(p, 0.5 + y + p);
+        context.lineTo(bw + p, 0.5 + y + p);
+    }
+
+    context.strokeStyle = "black";
+    context.stroke();
+}
 
 function resize_canvas()
 {
@@ -89,8 +120,11 @@ function toggleFullScreen()
 function redraw()
 {
 
+  canvas = document.getElementById("canvas");
 
 	stage.update();
+  drawGrid(canvas);
+
 	//FIXME the download data should be done when the button is clicked.
   updateDownloadLink();
 	needRedraw = false;
