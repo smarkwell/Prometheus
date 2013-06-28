@@ -100,7 +100,7 @@ function init()
   stage.addEventListener("stagemousemove", function(evt){
           stage_view_x += evt.stageX;
           stage_view_y += evt.stageY;
-          stage.setTranform(stage_view_x,stage_view_y);
+          stage.setTransform(stage_view_x,stage_view_y);
           needRedraw=true;
   })
 
