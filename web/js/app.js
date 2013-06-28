@@ -13,10 +13,13 @@ var stage_drag = false;
 function resize_canvas()
 {
             canvas = document.getElementById("canvas");
-            download = document.getElementById("download");
+            menu = document.getElementById("menu");
 
-//                canvas.width  = window.innerWidth;
-//                canvas.height = window.innerHeight - download.offsetHeight;
+
+            canvas.width  = window.innerWidth;
+            canvas.height = window.innerHeight - menu.offsetHeight;
+
+
 
 
             text.x = canvas.width/2 - text.getMeasuredWidth()/2;
@@ -39,9 +42,21 @@ function handleTick(event)
 
 }
 
+function launchFullScreen() {
+
+  element = document.documentElement;
+  if(element.requestFullScreen) {
+    element.requestFullScreen();
+  } else if(element.mozRequestFullScreen) {
+    element.mozRequestFullScreen();
+  } else if(element.webkitRequestFullScreen) {
+    element.webkitRequestFullScreen();
+  }
+}
+
 function redraw()
 {
-	resize_canvas();
+
 
 	stage.update();
 	//FIXME the download data should be done when the button is clicked.
@@ -52,7 +67,9 @@ function redraw()
 
 function screenAreaChange()
 {
+  resize_canvas();
   needRedraw = true;
+  redraw();
 }
 
 function updateDownloadLink()
@@ -83,6 +100,11 @@ function init()
       return false;
   };
 
+  // Setup DOM event listners
+
+  window.addEventListener('resize', screenAreaChange, false);
+  window.addEventListener('orientationchange', screenAreaChange, false);
+
 	// new stage
 	stage = new createjs.Stage(document.getElementById("canvas"));
 	stage.enableMouseOver();
@@ -112,12 +134,11 @@ function init()
           //stage_view_x += evt.stageX;
           //stage_view_y += evt.stageY;
           //stage.setTransform(stage_view_x,stage_view_y);
-          needRedraw=true;
+          //needRedraw=true;
   })
 
 
-
-  needRedraw = true;
+  screenAreaChange();
 
 }
 

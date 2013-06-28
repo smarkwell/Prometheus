@@ -17,21 +17,22 @@
   <title>Promethus</title>
 
 </head>
-<body onload="init()" onresize="screenAreaChange()">
+<body onload="init()">
 
-  <div class="container-fluid">
+  <div class="container-fluid" id="menu">
     <div class="row-fluid">
       <div class="span8">
         <a class="btn" id="download" href="#" download="YourDownloadSir.png">Download</a>
+        <a class="btn" href="#" onclick="launchFullScreen()"><i class="icon-fullscreen"></i></a>
       </div>
     </div>
   </div>
 
-    <div class="row-fluid">
-      <div class="span12">
+
+      <div id="renderframe">
         <canvas id="canvas">We do not currently support your browser.</canvas>
       </div>
-    </div>
+
 
 </body>
 </html>
