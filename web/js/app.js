@@ -15,8 +15,8 @@ function resize_canvas()
             canvas = document.getElementById("canvas");
             download = document.getElementById("download");
 
-                canvas.width  = window.innerWidth;
-                canvas.height = window.innerHeight - download.offsetHeight;
+//                canvas.width  = window.innerWidth;
+//                canvas.height = window.innerHeight - download.offsetHeight;
 
 
             text.x = canvas.width/2 - text.getMeasuredWidth()/2;
@@ -57,10 +57,14 @@ function screenAreaChange()
 
 function updateDownloadLink()
 {
-  downloadarea = document.getElementById("download");
+
   canvas = document.getElementById("canvas");
 
-  downloadarea.innerHTML = '<a href="' + canvas.toDataURL("image/png") + '" download="YourDownloadSir.png">Download</a>';
+  downloadbutton = document.getElementById("download");
+
+  downloadbutton.href = canvas.toDataURL("image/png");
+
+
 
 
 }
@@ -72,6 +76,13 @@ function stageDrag(event)
 
 function init()
 {
+
+  // disable click/drag for text highlight
+
+  document.getElementById("canvas").onselectstart = function() {
+      return false;
+  };
+
 	// new stage
 	stage = new createjs.Stage(document.getElementById("canvas"));
 	stage.enableMouseOver();
@@ -98,9 +109,9 @@ function init()
 
 
   stage.addEventListener("stagemousemove", function(evt){
-          stage_view_x += evt.stageX;
-          stage_view_y += evt.stageY;
-          stage.setTransform(stage_view_x,stage_view_y);
+          //stage_view_x += evt.stageX;
+          //stage_view_y += evt.stageY;
+          //stage.setTransform(stage_view_x,stage_view_y);
           needRedraw=true;
   })
 

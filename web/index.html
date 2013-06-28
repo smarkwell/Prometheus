@@ -1,18 +1,37 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Bootstrap -->
+<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+
 <link rel="stylesheet" href="css/style.css"/>
 <link rel="stylesheet" href="css/radial-test.css"/>
 <script src="js/easeljs-0.6.0.min.js"></script>
 <script src="js/jquery-1.9.1.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
 <script src="js/app.js"></script>
+
+  <title>Promethus</title>
 
 </head>
 <body onload="init()" onresize="screenAreaChange()">
 
-  <canvas id="canvas">We do not currently support your browser.</canvas>
-  <div id="download">
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <div class="span8">
+        <a class="btn" id="download" href="#" download="YourDownloadSir.png">Download</a>
+      </div>
+    </div>
   </div>
+
+    <div class="row-fluid">
+      <div class="span12">
+        <canvas id="canvas">We do not currently support your browser.</canvas>
+      </div>
+    </div>
+
 </body>
 </html>

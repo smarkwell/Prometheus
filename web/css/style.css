@@ -5,23 +5,10 @@ html,body {
 	overflow: hidden;
 }
 
-#download
-{
-  width: 100%;
-  height: 20px;
-  margin: 0px;
-  overflow: hidden;
-  text-align: center;
-}
 
-#radial
+#canvas
 {
-    position: absolute;
-    top: 25%; left: 50%;
-}
-
-#circle
-{
-    position: absolute;
-    top: 25%; left: 75%;
+    height: 100%;
+    min-height:100%;
+    min-width:100%;
 }
